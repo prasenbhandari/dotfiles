@@ -1,0 +1,18 @@
+configuration {
+    // General settings
+    dpi: 96;
+    font: "Jetbrains Mono Nerd 12";
+    lines: 10;
+    columns: 1;
+    separator: true;
+    // Window settings
+    location: 0;
+    anchor: northwest;
+    width: 30%;
+    height: 100%;
+
+	show-icons: true;
+}
+
+// Theme settings
+@theme "Arc-Dark"
