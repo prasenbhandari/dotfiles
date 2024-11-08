@@ -2,7 +2,7 @@
 #!/bin/bash
 
 # List of dotfiles to symlink
-files=(emacs fastfetch hypr kitty nvim rofi waybar)
+files=(fastfetch hypr kitty nvim rofi waybar)
 
 for file in "${files[@]}"; do
     # Remove existing config directory (if any)
