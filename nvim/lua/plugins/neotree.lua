@@ -23,7 +23,7 @@ return {
 	},
 
 	keys = {
-		{"<leader>.", "<cmd>Neotree toggle<cr>", desc = "Neotree"},
+		{"<leader>nt", "<cmd>Neotree toggle<cr>", desc = "Neotree"},
 	}
 
 }

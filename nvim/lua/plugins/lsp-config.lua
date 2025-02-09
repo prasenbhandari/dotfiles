@@ -20,6 +20,7 @@ return {
 
     {
         "neovim/nvim-lspconfig",
+		event = { 'BufRead', 'BufNewFile' },
         opts = {
             servers = {
                 pyright = {},

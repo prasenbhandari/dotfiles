@@ -1,6 +1,9 @@
 
 return {
     "nvimtools/none-ls.nvim",
+	dependencies = {
+      "nvimtools/none-ls-extras.nvim",
+    },
     opts = {
         sources = function()
             local none_ls = require("null-ls")
@@ -8,8 +11,14 @@ return {
             return {
                 -- Formatting sources
                 none_ls.builtins.formatting.stylua,         -- Lua formatter
-                none_ls.builtins.formatting.black,          -- Python formatter
+				none_ls.builtins.formatting.black.with({ -- Python formatter (autopep8)
+                    extra_args = { "--max-line-length=79" }, -- Force PEP8 line length
+                }),
+
                 none_ls.builtins.formatting.clang_format,   -- C/C++ formatter
+
+				-- Linting sources
+				none_ls.builtins.diagnostics.ruff,
             }
         end,
     },

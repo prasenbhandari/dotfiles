@@ -3,6 +3,7 @@ return {
 	{
 		'nvim-telescope/telescope.nvim',
 		dependencies = { 'nvim-lua/plenary.nvim' },
+		event = { 'BufRead', 'BufNewFile' },
 		opts = function()
 			local actions = require('telescope.actions')
 			return {
@@ -42,6 +43,14 @@ return {
 	-- Install the UI select extension
 	{
 		'nvim-telescope/telescope-ui-select.nvim',
+	},
+	{
+		"nvim-telescope/telescope-file-browser.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+		keys = {
+			-- Enable hidden files in file browser
+			{ "<leader>.", ":Telescope file_browser path=%:p:h hidden=true select_buffer=true<CR>", desc = "Open file browser with hidden files" }
+		}
 	}
 }
 
