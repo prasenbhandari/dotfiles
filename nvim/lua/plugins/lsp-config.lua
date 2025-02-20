@@ -2,6 +2,7 @@
 return {
     {
         "williamboman/mason.nvim",
+        event = { "BufRead", "BufNewFile" },
         opts = {},
         config = function(_, opts)
             require("mason").setup(opts)
@@ -10,6 +11,7 @@ return {
 
     {
         "williamboman/mason-lspconfig.nvim",
+        event = { "BufRead", "BufNewFile" },
         opts = {
             ensure_installed = { "lua_ls", "clangd", "pyright" },
         },

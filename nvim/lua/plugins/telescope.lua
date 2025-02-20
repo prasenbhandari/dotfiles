@@ -2,20 +2,32 @@ return {
 	-- Telescope core plugin
 	{
 		'nvim-telescope/telescope.nvim',
-		dependencies = { 'nvim-lua/plenary.nvim' },
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			"nvim-telescope/telescope-fzf-native.nvim",
+			"nvim-tree/nvim-web-devicons"
+		},
 		event = { 'BufRead', 'BufNewFile' },
 		opts = function()
 			local actions = require('telescope.actions')
 			return {
 				defaults = {
+					prompt_prefix = "  ",
+					layout_strategy = "horizontal",
+					layout_config = {
+						horizontal = { width = 0.9, height = 0.8, prompt_position = "top" },
+					},
+					file_ignore_patterns = { "node_modules", ".git" },
 					mappings = {
 						i = {
 							["<C-j>"] = actions.move_selection_next,
 							["<C-k>"] = actions.move_selection_previous,
+							["<Tab>"] = actions.select_tab,
 						},
 						n = {
 							["<C-j>"] = actions.move_selection_next,
 							["<C-k>"] = actions.move_selection_previous,
+							["<Tab>"] = actions.select_tab,
 						},
 					},
 				},
@@ -30,13 +42,16 @@ return {
 				{ "<leader>b", builtin.buffers, desc = "List buffers with Telescope" },
 				{ "<leader>h", builtin.help_tags, desc = "Find help with Telescope" },
 				{ "<leader>m", builtin.man_pages, desc = "Find man pages with Telescope" },
-				{ "<leader>t", function() builtin.colorscheme({ enable_preview = true }) end, desc = "Preview colorschemes with Telescope" }
+				{ "<leader>t", function() builtin.colorscheme({ enable_preview = true }) end, desc = "Preview colorschemes with Telescope" },
+				{ "<leader>r", builtin.resume, desc = "Resume Telescope" },
 			}
 		end,
 		config = function(_, opts)
-			require('telescope').setup(opts)
-			-- Load the `ui-select` extension after setting up Telescope
-			require('telescope').load_extension('ui-select')
+			local telescope = require('telescope')
+			telescope.setup(opts)
+			telescope.load_extension('ui-select')
+			telescope.load_extension('fzf')
+			telescope.load_extension('file_browser')
 		end
 	},
 

@@ -12,9 +12,20 @@ return {
 				--visible = true,
 				hide_dotfiles = false,
 			},
+			follow_current_file = {
+				enabled = true,
+				leave_dirs_open = false
+			},
+			hijack_netrw_behavior = "open_current",
 		},
 
 		window = {
+			position = "float",
+			border = "rounded",
+			popup = {
+				size = { height = 0.8, width = 0.6 },
+				position = { row = "50%", col = "50%" },
+			},
 			mappings = {
 				["<Tab>"] = "open",
 				["<cr>"] = "open",
@@ -23,7 +34,7 @@ return {
 	},
 
 	keys = {
-		{"<leader>nt", "<cmd>Neotree toggle<cr>", desc = "Neotree"},
+		{"<leader>e", "<cmd>Neotree toggle float<cr>", desc = "Neotree"},
 	}
 
 }

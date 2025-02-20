@@ -1,3 +1,4 @@
+
 {
   "layer": "top",
   "position": "top",
@@ -13,11 +14,11 @@
     "custom/ws",            // window icon
     "custom/left1",
 
-    "hyprland/workspaces",  // workspaces
+    "sway/workspaces",  // workspaces
     "custom/right1",
 
     "custom/paddw",
-    "hyprland/window"       // window title
+    "sway/window"       // window title
   ],
 
   "modules-center": [
@@ -44,8 +45,8 @@
     "custom/right4",
 
     "custom/wifi",          // wi-fi
- //   "bluetooth",            // bluetooth
-        //"custom/update",        // system update
+    //"bluetooth",            // bluetooth
+    //"custom/update",        // system update
     "custom/right5"
   ],
 
@@ -74,7 +75,7 @@
     "max-length": 3
   },
 
-  "hyprland/workspaces": {
+  "sway/workspaces": {
     "on-scroll-up": "hyprctl dispatch workspace -1",
     "on-scroll-down": "hyprctl dispatch workspace +1",
     "persistent-workspaces": {
@@ -86,7 +87,7 @@
     }
   },
 
-  "hyprland/window": {
+  "sway/window": {
     "format": "{}",
     "min-length": 5,
 
@@ -96,7 +97,7 @@
       // == Desktop ==
 
       "": 
-        "<span foreground='#89b4fa'> </span> Hyprland",
+        "<span foreground='#89b4fa'> </span> sway",
 
       // == Terminal ==
 
@@ -276,7 +277,7 @@
     "tooltip": true,
     "on-click": "~/.config/waybar/scripts/wifi-menu.sh",
     "on-click-right": "kitty --title '󰤨  Network Manager TUI' bash -c nmtui",
-    "interval": 1,
+    "interval": 10,
     "min-length": 1,
     "max-length": 1
   },

@@ -1,11 +1,30 @@
-vim.cmd("set tabstop=4")
-vim.cmd("set softtabstop=4")
-vim.cmd("set shiftwidth=4")
-vim.cmd("set number")
+-- Indentation settings
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
+vim.o.autoindent = true
 
-vim.schedule(function()
-	vim.opt.clipboard = 'unnamedplus'
-end)
+-- Line numbers and relative numbers
+vim.o.number = true
+vim.o.relativenumber = true
+
+-- Clipboard
+vim.opt.clipboard = 'unnamedplus'
+
+-- Search
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.hlsearch = true
+
+-- Enable true color support
+vim.opt.termguicolors = true
+
+-- Enable cursor line highlight
+vim.opt.cursorline = true
+
+vim.o.splitright = true
+vim.o.splitbelow = true
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -28,17 +47,20 @@ vim.keymap.set('n', "<leader>x",
 )
 
 
-if vim.g.vscode then
-    -- VSCode extension
-else
-    -- ordinary Neovim
-end
+-- if vim.g.vscode then
+--     -- VSCode extension
+-- else
+--     -- ordinary Neovim
+-- end
 
 -- Setup theme 
-vim.g.material_style = "deep ocean"
-vim.cmd('colorscheme material')
-vim.o.guifont = "Jetbrains Mono"
-vim.o.relativenumber = true
+
+vim.g.tokyonight_style = "night"
+vim.cmd[[colorscheme tokyonight]]
+
+vim.o.guifont = "JetBrainsMono Nerd Font"
+
+
 
 vim.filetype.add({
 	pattern = {

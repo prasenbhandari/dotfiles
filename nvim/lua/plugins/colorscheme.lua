@@ -1,30 +1,39 @@
 return {
 	-- Add multiple themes here
-	{ "folke/tokyonight.nvim",
+	{
+        "folke/tokyonight.nvim",
 		lazy = true,
 	},
-	{ "catppuccin/nvim", name = "catppuccin",
+	{
+        "catppuccin/nvim", name = "catppuccin",
 		lazy = true,
 	},
-	{ "shaunsingh/nord.nvim",
+	{
+        "shaunsingh/nord.nvim",
 		lazy = true,
 	},
-	{ "navarasu/onedark.nvim",
+	{
+        "navarasu/onedark.nvim",
 		lazy = true,
 	},
-	{ "dracula/vim", as = "dracula",
+	{
+        "dracula/vim", as = "dracula",
 		lazy = true,
 	},
-	{ "sainnhe/everforest",
+	{
+        "sainnhe/everforest",
 		lazy = true,
 	},
-	{ "sainnhe/sonokai",
+	{
+        "sainnhe/sonokai",
 		lazy = true,
 	},
-	{ "morhetz/gruvbox",
+	{
+        "morhetz/gruvbox",
 		lazy = true,
 	},
-	{ "rebelot/kanagawa.nvim",
+	{
+        "rebelot/kanagawa.nvim",
 		lazy = true,
 	},
 	{
