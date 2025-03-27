@@ -9,6 +9,7 @@ return {
 			},
 			sections = {
 				lualine_x = {
+                    function() return vim.g.copilot_enabled and "🤖 Copilot ON" or "💀 Copilot OFF" end,
 					{
 						require("noice").api.statusline.mode.get,
 						cond = require("noice").api.statusline.mode.has,

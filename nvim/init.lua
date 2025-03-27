@@ -26,13 +26,31 @@ vim.opt.cursorline = true
 vim.o.splitright = true
 vim.o.splitbelow = true
 
+-- Always load lazy.nvim first
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    if vim.v.shell_error ~= 0 then
+        vim.api.nvim_echo({
+            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+            { out, "WarningMsg" },
+            { "\nPress any key to exit..." },
+        }, true, {})
+        vim.fn.getchar()
+        os.exit(1)
+    end
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- Set leader keys before lazy
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 
-require("config.lazy")
+vim.g.neovide_transparency = 0.8
 
 -- Setup window navigation with hjkl using Ctrl
 vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move to left window' })
@@ -46,21 +64,35 @@ vim.keymap.set('n', "<leader>x",
 	{ desc = "Toggle Relative Number"}
 )
 
+vim.g.copilot_enabled = true
 
--- if vim.g.vscode then
---     -- VSCode extension
--- else
---     -- ordinary Neovim
--- end
+-- Function to Toggle Copilot
+function ToggleCopilot()
+    vim.g.copilot_enabled = not vim.g.copilot_enabled
+    if vim.g.copilot_enabled then
+        vim.notify("🔥 Copilot Enabled 🚀", vim.log.levels.INFO)
+    else
+        vim.notify("💀 Copilot Disabled 🧠", vim.log.levels.WARN)
+    end
+end
+
+-- Keybinding to Toggle Copilot
+vim.api.nvim_set_keymap("n", "<leader>cc", ":lua ToggleCopilot()<CR>", { noremap = true, silent = true })
+
+if vim.g.vscode then
+    vim.notify("🎮 Running in VSCode mode!", vim.log.levels.INFO)
+    require("lazy").setup(require("vscode_config").plugins)
+    require("vscode_config").setup()
+else
+    vim.notify("🚀 Running in regular Neovim mode!", vim.log.levels.INFO)
+    require("config.lazy") -- Your plugins and full config
+    vim.g.tokyonight_style = "night"
+    vim.cmd[[colorscheme tokyonight]]
+end
 
 -- Setup theme 
 
-vim.g.tokyonight_style = "night"
-vim.cmd[[colorscheme tokyonight]]
-
 vim.o.guifont = "JetBrainsMono Nerd Font"
-
-
 
 vim.filetype.add({
 	pattern = {

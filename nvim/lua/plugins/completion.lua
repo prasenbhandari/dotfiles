@@ -1,5 +1,13 @@
 
 return {
+    {
+        "github/copilot.vim",
+        lazy = false,
+        config = function()
+            vim.g.copilot_no_tab_map = true
+            vim.api.nvim_set_keymap("i", "<S-Tab>", 'copilot#Accept("<CR>")', { expr = true, silent = true, noremap = true })
+        end
+    },
 	{
 		'L3MON4D3/LuaSnip',
 		event = "InsertEnter",
@@ -17,6 +25,7 @@ return {
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-nvim-lsp",
+            "zbirenbaum/copilot-cmp",
 		},
 		config = function()
 			local cmp = require('cmp')
@@ -36,9 +45,8 @@ return {
 				mapping = cmp.mapping.preset.insert({
 					['<C-Space>'] = cmp.mapping.complete(),
 					['<CR>'] = cmp.mapping.confirm({ select = true }),
-					['<Tab>'] = cmp.mapping.select_next_item(),
-					['<S-Tab>'] = cmp.mapping.select_prev_item(),
-				}),
+                    ["<Tab>"] = cmp.mapping.select_next_item(),
+                }),
 				sources = cmp.config.sources({
 					{ name = 'nvim_lsp' },
 					{ name = 'luasnip' },
