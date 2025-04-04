@@ -1,0 +1,37 @@
+
+# Main SwayFX Configuration
+
+# Source additional configuration files
+include ~/.config/sway/keybindings.conf
+include ~/.config/sway/scripts.conf
+include ~/.config/sway/autostart.conf
+
+default_border pixel 2
+default_floating_border none
+
+client.focused #59786c #59786c #000000
+
+gaps inner 5
+gaps outer 5
+gaps bottom 5
+gaps top 5
+
+output HDMI-A-1 resolution 1920x1080 position 1920,0
+output eDP-1 resolution 1920x1080 position 0,0
+
+input type:touchpad {
+    tap enabled
+    click_method button_areas
+    natural_scroll enabled
+}
+
+
+smart_corner_radius on
+corner_radius 10
+default_dim_inactive 0.05
+
+# Shadows
+shadows enable
+shadow_blur_radius 12
+
+include /etc/sway/config.d/*

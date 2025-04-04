@@ -44,9 +44,7 @@
     "clock#date",           // date
     "custom/right4",
 
-    "custom/wifi",          // wi-fi
-    //"bluetooth",            // bluetooth
-    //"custom/update",        // system update
+    "tray",          // wi-fi
     "custom/right5"
   ],
 
@@ -78,13 +76,6 @@
   "sway/workspaces": {
     "on-scroll-up": "hyprctl dispatch workspace -1",
     "on-scroll-down": "hyprctl dispatch workspace +1",
-    "persistent-workspaces": {
-      "1": [],
-      "2": [],
-      "3": [],
-      "4": [],
-      "5": []
-    }
   },
 
   "sway/window": {
@@ -104,8 +95,6 @@
       "~": "  Terminal",
       "zsh": "  Terminal",
       "kitty": "  Terminal",
-      "sejjy@archlinux:(.*)": "  Terminal",
-      "(.*)sejjy@archlinux:~": "  Terminal",
 
       // == Browser ==
 
@@ -113,11 +102,6 @@
         "<span foreground='#f38ba8'>󰈹 </span> Firefox",
       "(.*) — Mozilla Firefox": 
         "<span foreground='#f38ba8'>󰈹 </span> $1",
-
-      "(.*)Zen Browser": 
-        "<span foreground='#cdd6f4'>󰈹 </span> Zen Browser",
-      "(.*) — Zen Browser": 
-        "<span foreground='#cdd6f4'>󰈹 </span> $1",
 
       // == Development ==
 
@@ -158,9 +142,6 @@
       "(.*).svg": "  $1.svg",
 
       // == Social ==
-
-      "vesktop": 
-        "<span foreground='#89b4fa'> </span> Discord",
 
       "• Discord(.*)": "Discord$1",
       "(.*)Discord(.*)": 
@@ -281,42 +262,6 @@
     "min-length": 1,
     "max-length": 1
   },
-
-  //"bluetooth": {
-  //  "format": "󰂰",
-  //  "format-disabled": "󰂲",
-  //  "format-connected": "󰂱",
-  //  "format-connected-battery": "󰂱",
-  //
-  //  "tooltip-format": 
-  //    "{num_connections} connected",
-  //  "tooltip-format-disabled": 
-  //    "Bluetooth Disabled",
-  //  "tooltip-format-connected": 
-  //    "{num_connections} connected\n{device_enumerate}",
-  //  "tooltip-format-enumerate-connected": 
-  //    "{device_alias}",
-  //  "tooltip-format-enumerate-connected-battery": 
-  //    "{device_alias}: {device_battery_percentage}%",
-  //
-  //  "on-click": "~/.config/waybar/scripts/bluetooth-menu.sh",
-  //  "on-click-right": "kitty --title '󰂯  Bluetooth TUI' bash -c bluetui",
-  //  "interval": 1,
-  //  "min-length": 1,
-  //  "max-length": 1
-  //},
-  //
-  //"custom/update": {
-  //  "exec": "~/.config/waybar/scripts/system-update.sh",
-  //  "return-type": "json",
-  //  "format": "{}",
-  //  "on-click": "hyprctl dispatch exec '~/.config/waybar/scripts/system-update.sh up'",
-  //  "interval": 60,
-  //  "tooltip": true,
-  //  "signal": 20, // I'm not sure what this does
-  //  "min-length": 1,
-  //  "max-length": 1
-  //},
 
   "custom/media": {
     "exec": "~/.config/waybar/scripts/media-player.py",
