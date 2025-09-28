@@ -1,0 +1,112 @@
+# Official Arch Repository Packages
+# Core Hyprland ecosystem
+hyprland
+hyprpaper
+hypridle
+hyprlock
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
+
+# Wayland support
+qt5-wayland
+qt6-wayland
+wayland
+wayland-protocols
+
+# Audio system
+pipewire
+pipewire-pulse
+pipewire-alsa
+pipewire-jack
+wireplumber
+pavucontrol
+alsa-utils
+
+# Terminal and shell
+kitty
+fish
+
+# File managers
+dolphin
+thunar
+ranger
+
+# Text editors
+neovim
+neovide
+
+# Web browsers
+firefox
+
+# Media tools
+mpv
+imv
+grim
+slurp
+wl-clipboard
+imagemagick
+
+# System utilities
+fastfetch
+btop
+htop
+tree
+zip
+unzip
+wget
+curl
+git
+openssh
+bat
+fzf
+ripgrep
+fd
+exa
+lsd
+
+# Network and connectivity
+networkmanager
+network-manager-applet
+bluez
+bluez-utils
+blueman
+openssh
+
+# Development tools
+base-devel
+python
+python-pip
+nodejs
+npm
+jdk11-openjdk
+git
+github-cli
+
+# Fonts
+ttf-jetbrains-mono-nerd
+ttf-nerd-fonts-symbols
+noto-fonts
+noto-fonts-emoji
+ttf-dejavu
+ttf-liberation
+
+# Theming and appearance
+kvantum
+qt5ct
+qt6ct
+gtk3
+gtk4
+papirus-icon-theme
+arc-gtk-theme
+
+# System tools
+polkit-kde-agent
+xarchiver
+file-roller
+notification-daemon
+dunst
+mako
+
+# Security
+gnupg
+pass

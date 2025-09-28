@@ -1,0 +1,25 @@
+# AUR Packages
+# Enhanced versions and extras
+waybar-hyprland
+rofi-wayland
+wlogout
+swww
+nwg-look
+
+# Cursors and themes
+rose-pine-hyprcursor
+bibata-cursor-theme
+
+# Development tools
+visual-studio-code-bin
+postman-bin
+
+# Media and utilities
+spotify
+discord
+obsidian
+speedtest-cli
+
+# System enhancements
+paru
+rate-mirrors-bin
