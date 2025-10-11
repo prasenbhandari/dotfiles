@@ -50,7 +50,7 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 
-vim.g.neovide_transparency = 0.8
+vim.g.neovide_opacity = 0.8
 
 -- Setup window navigation with hjkl using Ctrl
 vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move to left window' })

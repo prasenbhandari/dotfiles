@@ -1,60 +1,53 @@
-
 return {
-    {
-        "williamboman/mason.nvim",
-        event = { "BufRead", "BufNewFile" },
-        opts = {},
-        config = function(_, opts)
-            require("mason").setup(opts)
-        end
-    },
+	{
+		"williamboman/mason.nvim",
+		cmd = "Mason",
+		config = function()
+			require("mason").setup()
+		end,
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			"williamboman/mason.nvim",
+			"neovim/nvim-lspconfig",
+		},
+		config = function()
+			local ensure_installed = { "lua_ls", "clangd", "pyright", "hyprls" }
 
-    {
-        "williamboman/mason-lspconfig.nvim",
-        event = { "BufRead", "BufNewFile" },
-        opts = {
-            ensure_installed = { "lua_ls", "clangd", "pyright" },
-        },
-        config = function(_, opts)
-            require("mason-lspconfig").setup(opts)
-        end,
-    },
+			require("mason-lspconfig").setup({
+				ensure_installed = ensure_installed,
+			})
 
-    {
-        "neovim/nvim-lspconfig",
-		event = { 'BufRead', 'BufNewFile' },
-        opts = {
-            servers = {
-                pyright = {},
-
-                lua_ls = {
-                    settings = {
-                        Lua = {
-                            diagnostics = {
-                                globals = { "vim" }, -- Recognize `vim` as a global to avoid warnings
-                            },
-                        },
-                    },
-                },
-
-                clangd = {},
-            },
-        },
-        config = function(_, opts)
-            local lspconfig = require("lspconfig")
 			local capabilities = require('cmp_nvim_lsp').default_capabilities()
-            for server, config in pairs(opts.servers) do
-                lspconfig[server].setup(config)
-				capabilities = capabilities
-            end
-        end,
 
-		keys = function()
-            return {
-                { "K", vim.lsp.buf.hover, desc = "LSP Hover Documentation", mode = "n" }, -- Show hover documentation on `K`
-                { "gd", vim.lsp.buf.definition, desc = "Go to definition", mode = "n" }, -- Go to definition on `gd`
-                { "<leader>ca", vim.lsp.buf.code_action, desc = "LSP Code Action", mode = "n" }, -- Show code actions on `<leader>ca`
-            }
-        end,
-    },
+			local servers = {
+				pyright = {},
+				clangd = {},
+				lua_ls = {
+					settings = {
+						Lua = {
+							diagnostics = { globals = { "vim" } },
+						},
+					},
+				},
+				hyprls = {},
+			}
+
+			for name, config in pairs(servers) do
+				-- Configure the server with the provided options
+				vim.lsp.config(name, vim.tbl_deep_extend("force", {
+					capabilities = capabilities,
+				}, config))
+				-- Enable the server
+				vim.lsp.enable(name)
+			end
+
+			-- Keybindings
+			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover" })
+			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
+			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+		end,
+	},
 }

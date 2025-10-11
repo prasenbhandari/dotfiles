@@ -5,7 +5,7 @@ return {
   event = { "BufRead", "BufNewFile" },
   config = function()
     require("nvim-treesitter.configs").setup({
-      ensure_installed = { "lua", "c", "cpp", "python" },  -- list your languages here
+      ensure_installed = { "lua", "c", "cpp", "python", "hyprlang" },  -- list your languages here
       auto_install = true,  -- Automatically install missing parsers on startup
 
       highlight = {

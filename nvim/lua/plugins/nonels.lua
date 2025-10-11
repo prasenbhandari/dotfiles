@@ -16,17 +16,17 @@ return {
 	},
 	opts = {
 		sources = function()
-			local null_ls = require("null-ls")
+			local nonels = require("null-ls")
 			return {
 				-- Formatting sources
-				null_ls.builtins.formatting.stylua,  -- Lua formatter
-				null_ls.builtins.formatting.black.with({  -- Python formatter
-					extra_args = { "--max-line-length=79" },  -- Enforce PEP8 line length
+				nonels.builtins.formatting.stylua, -- Lua formatter
+				nonels.builtins.formatting.black.with({ -- Python formatter
+					extra_args = { "--max-line-length=79" }, -- Enforce PEP8 line length
 				}),
-				null_ls.builtins.formatting.clang_format,  -- C/C++ formatter
+				nonels.builtins.formatting.clang_format, -- C/C++ formatter
 
 				-- Linting sources (currently commented out)
-				-- null_ls.builtins.diagnostics.ruff,
+				-- nonels.builtins.diagnostics.ruff,
 			}
 		end,
 	},
