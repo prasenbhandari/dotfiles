@@ -36,7 +36,7 @@ print_status "Installing dotfiles from $SCRIPT_DIR"
 mkdir -p ~/.config
 
 # List of dotfiles to symlink
-files=(fastfetch fish hypr kitty nvim rofi sway waybar)
+files=(emacs fastfetch fish hypr kitty nvim rofi sway waybar)
 
 # Backup existing configs
 backup_dir="$HOME/.config_backup_$(date +%Y%m%d_%H%M%S)"

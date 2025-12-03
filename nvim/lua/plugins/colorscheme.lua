@@ -2,7 +2,12 @@ return {
 	-- Add multiple themes here
 	{
         "folke/tokyonight.nvim",
-		lazy = true,
+		lazy = false,
+        priority = 1000,
+        config = function()
+            vim.g.tokyonight_style = "night"
+            vim.cmd.colorscheme "tokyonight"
+        end
 	},
 	{
         "catppuccin/nvim", name = "catppuccin",

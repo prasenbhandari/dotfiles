@@ -86,8 +86,6 @@ if vim.g.vscode then
 else
     vim.notify("🚀 Running in regular Neovim mode!", vim.log.levels.INFO)
     require("config.lazy") -- Your plugins and full config
-    vim.g.tokyonight_style = "night"
-    vim.cmd[[colorscheme tokyonight]]
 end
 
 -- Setup theme 

@@ -1,53 +1,49 @@
 return {
-	{
-		"williamboman/mason.nvim",
-		cmd = "Mason",
-		config = function()
-			require("mason").setup()
-		end,
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-		event = "VeryLazy",
-		dependencies = {
-			"williamboman/mason.nvim",
-			"neovim/nvim-lspconfig",
-		},
-		config = function()
-			local ensure_installed = { "lua_ls", "clangd", "pyright", "hyprls" }
+    {
+        "williamboman/mason.nvim",
+        cmd = "Mason",
+        config = true,
+    },
 
-			require("mason-lspconfig").setup({
-				ensure_installed = ensure_installed,
-			})
+    {
+        "neovim/nvim-lspconfig",
+        event = { "BufRead", "BufNewFile" },
+        dependencies = {
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim", -- Make sure this is a dependency
+        },
+        config = function()
+            local on_attach = function(client, bufnr)
+                local bufmap = vim.keymap.set
+                bufmap("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "LSP Hover" })
+                bufmap("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Go to Definition" })
+                bufmap("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code Action" })
+            end
 
-			local capabilities = require('cmp_nvim_lsp').default_capabilities()
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-			local servers = {
-				pyright = {},
-				clangd = {},
-				lua_ls = {
-					settings = {
-						Lua = {
-							diagnostics = { globals = { "vim" } },
-						},
-					},
-				},
-				hyprls = {},
-			}
+            vim.lsp.config('*', {
+                on_attach = on_attach,
+                capabilities = capabilities,
+            })
 
-			for name, config in pairs(servers) do
-				-- Configure the server with the provided options
-				vim.lsp.config(name, vim.tbl_deep_extend("force", {
-					capabilities = capabilities,
-				}, config))
-				-- Enable the server
-				vim.lsp.enable(name)
-			end
+            vim.lsp.config('lua_ls', {
+                settings = {
+                    Lua = { diagnostics = { globals = { "vim" } } },
+                }
+            })
 
-			-- Keybindings
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover" })
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
-			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
-		end,
-	},
+        end
+    },
+
+    {
+        "williamboman/mason-lspconfig.nvim",
+        config = function()
+            require("mason-lspconfig").setup({
+                -- A list of servers to ensure are installed
+                ensure_installed = { "lua_ls", "clangd", "pyright", "hyprls" },
+                automatic_installation = true, -- Renamed from 'automatic_setup'
+            })
+        end
+    },
 }

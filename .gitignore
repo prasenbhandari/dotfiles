@@ -1,3 +1,46 @@
+# EMACS — ignore caches, temp, generated files
+emacs/*~
+emacs/.*.~undo-tree~
+emacs/.lsp-session-v1
+emacs/.cache/
+emacs/auto-save-list/
+emacs/eln-cache/
+emacs/elpa/
+emacs/persp-confs/
+emacs/transient/
+emacs/tree-sitter/
+emacs/history
+emacs/recentf
+emacs/projectile-bookmarks.eld
+emacs/org-roam.db
+
+# FISH — ignore temp/swap files
+fish/fish_variables.*
+fish/fishd.tmp.*
+
+# HYPRLAND — ignore runtime state
+hypr/toggle_state
+
+# FASTFETCH — ignore backups
+fastfetch/*.bak
+
+# COMMON IGNORES
+# Backup/swap files
+*~
+*.bak
+*.swp
+*.swo
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
+
+# End of file
 nvim/lazy-lock.json
 fish/*
 !fish/config.fish
